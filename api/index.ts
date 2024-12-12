@@ -6,8 +6,8 @@ import messageRouter from "./routes/messages";
 const app = express();
 const port = 8000;
 
-app.use(cors());
 app.use(express.json());
+app.use(cors());
 app.use(express.static("public"));
 app.use('/messages', messageRouter);
 

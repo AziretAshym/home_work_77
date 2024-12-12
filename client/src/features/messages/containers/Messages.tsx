@@ -21,7 +21,7 @@ const Message = () => {
 
   return (
     <>
-      <Typography variant={"h2"} textAlign={'center'} marginBottom={"40px"}>Messages</Typography>
+      <Typography variant={"h2"} textAlign={'center'} marginBottom={"40px"}>GUESTBOOK</Typography>
       <Grid container spacing={2}>
         {isFetchLoading ? (
           <div style={{display: 'flex', justifyContent: "center"}}>

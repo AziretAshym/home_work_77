@@ -4,3 +4,9 @@ export interface IMessage {
   message: string;
   image: string | null;
 }
+
+export interface IMessageMutation {
+  author: string;
+  message: string;
+  image: File | null;
+}

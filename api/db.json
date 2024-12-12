@@ -16,5 +16,17 @@
     "author": "3",
     "message": "3",
     "image": "images/64abbd1b-de83-4fa3-a147-5f8037f2a5fd.jpg"
+  },
+  {
+    "id": "54b62866-15aa-4172-abdb-8f14efd0ac99",
+    "author": "test",
+    "message": "Hello",
+    "image": "images/ca7cae6d-b0a5-4a1b-ba10-a122f8245a70.jpg"
+  },
+  {
+    "id": "023dc29f-9899-428d-af77-59eafc342cfd",
+    "author": "Anonymous",
+    "message": "ewfvf",
+    "image": null
   }
 ]

@@ -8,13 +8,21 @@ const Navbar = () => {
     <>
       <Box sx={{ flexGrow: 1, marginBottom: "90px" }}>
         <AppBar sx={{display: 'flex', justifyContent: 'center'}}>
-          <Toolbar>
+          <Toolbar sx={{display: 'flex', justifyContent: 'space-between'}}>
             <NavLink to={"/"} style={{
               textDecoration: 'none',
               fontSize: '35px',
               color: 'inherit',
             }} >
-              Photos
+              Messages
+            </NavLink>
+
+            <NavLink to={"/new-message"} style={{
+              textDecoration: 'none',
+              fontSize: '20px',
+              color: 'inherit',
+            }} >
+              Add new message
             </NavLink>
           </Toolbar>
         </AppBar>

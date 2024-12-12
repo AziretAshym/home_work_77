@@ -3,6 +3,7 @@ import React, { ChangeEvent, FormEvent, useState } from 'react';
 import Grid from '@mui/material/Grid2';
 import { Button, TextField } from '@mui/material';
 import FileInput from '../../../Components/FileInput/FileInput.tsx';
+import { toast } from 'react-toastify';
 
 interface Props {
   onSubmit: (message: IMessageMutation) => void;
@@ -20,8 +21,12 @@ const MessageForm: React.FC<Props> = ({onSubmit}) => {
   const submitFormHandler = (e: FormEvent) => {
     e.preventDefault();
 
-    console.log(form);
-    onSubmit({...form});
+    if (!form.message.trim()) {
+      toast.error('Message cannot be empty!');
+      return;
+    }
+
+    onSubmit({ ...form });
   };
 
   const inputChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -66,7 +71,6 @@ const MessageForm: React.FC<Props> = ({onSubmit}) => {
               value={form.message}
               onChange={inputChangeHandler}
               sx={{width:'100%'}}
-              required
             />
           </Grid>
 

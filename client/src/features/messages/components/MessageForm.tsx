@@ -1,9 +1,11 @@
 import { IMessageMutation } from '../../../types';
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 import Grid from '@mui/material/Grid2';
-import { Button, TextField } from '@mui/material';
+import { Button, CircularProgress, TextField } from '@mui/material';
 import FileInput from '../../../Components/FileInput/FileInput.tsx';
 import { toast } from 'react-toastify';
+import { useAppSelector } from '../../../app/hooks.ts';
+import { selectCreateLoading } from '../messagesSlice.ts';
 
 interface Props {
   onSubmit: (message: IMessageMutation) => void;
@@ -17,6 +19,7 @@ const initialState = {
 
 const MessageForm: React.FC<Props> = ({onSubmit}) => {
   const [form, setForm] = useState<IMessageMutation>(initialState);
+  const addLoading = useAppSelector(selectCreateLoading);
 
   const submitFormHandler = (e: FormEvent) => {
     e.preventDefault();
@@ -47,50 +50,55 @@ const MessageForm: React.FC<Props> = ({onSubmit}) => {
 
 
   return (
-    <div style={{display: 'flex', justifyContent: 'center'}}>
-      <form
-        onSubmit={submitFormHandler}
-      >
-        <Grid container direction="column" spacing={2}>
-          <Grid>
-            <TextField
-              id="author"
-              name="author"
-              label="Author"
-              value={form.author}
-              onChange={inputChangeHandler}
-              sx={{width:'100%'}}
-            />
-          </Grid>
+    <>
+      {addLoading ? (<CircularProgress />) : (
+        <>
+          <div style={{display: 'flex', justifyContent: 'center'}}>
+            <form
+              onSubmit={submitFormHandler}
+            >
+              <Grid container direction="column" spacing={2}>
+                <Grid>
+                  <TextField
+                    id="author"
+                    name="author"
+                    label="Author"
+                    value={form.author}
+                    onChange={inputChangeHandler}
+                    sx={{width: '100%'}}
+                  />
+                </Grid>
 
-          <Grid>
-            <TextField
-              id="message"
-              name="message"
-              label="Message"
-              value={form.message}
-              onChange={inputChangeHandler}
-              sx={{width:'100%'}}
-            />
-          </Grid>
-
-
-
-          <Grid sx={{width:'100%'}}>
-            <FileInput
-              name="image"
-              label="Image"
-              onGetFile={fileEventChangeHandler}
-            />
-          </Grid>
+                <Grid>
+                  <TextField
+                    id="message"
+                    name="message"
+                    label="Message"
+                    value={form.message}
+                    onChange={inputChangeHandler}
+                    sx={{width: '100%'}}
+                  />
+                </Grid>
 
 
-          <Grid>
-            <Button type="submit" color="primary">Create</Button>
-          </Grid>
-        </Grid>
-      </form>
-    </div>
+                <Grid sx={{width: '100%'}}>
+                  <FileInput
+                    name="image"
+                    label="Image"
+                    onGetFile={fileEventChangeHandler}
+                  />
+                </Grid>
+
+
+                <Grid>
+                  <Button type="submit" color="primary">Create</Button>
+                </Grid>
+              </Grid>
+            </form>
+          </div>
+        </>
+      )}
+    </>
   );
 };
 

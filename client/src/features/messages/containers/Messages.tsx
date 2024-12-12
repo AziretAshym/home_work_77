@@ -22,27 +22,30 @@ const Message = () => {
   return (
     <>
       <Typography variant={"h2"} textAlign={'center'} marginBottom={"40px"}>GUESTBOOK</Typography>
-      <Grid container spacing={2}>
-        {isFetchLoading ? (
-          <div style={{display: 'flex', justifyContent: "center"}}>
-            <CircularProgress />
-          </div>
-        ) : messages.length === 0 ? (
-          <Typography variant="h6">No messages yet</Typography>
-        ) : (
-          messages.map((message: IMessage) => (
-            <Grid size={4}>
-              <OneMessage
-                key={message.id}
-                id={message.id}
-                author={message.author}
-                message={message.message}
-                image={message.image}
-              />
-            </Grid>
-          ))
-        )}
-      </Grid>
+      {isFetchLoading ? (
+        <div style={{display: 'flex', justifyContent: 'center'}}>
+          <CircularProgress />
+        </div>
+      ) : (
+        <>
+          <Grid container spacing={2}>
+            {messages.length === 0 ? (
+              <Typography variant="h6">No messages yet</Typography>
+            ) : ( messages.map((message: IMessage) => (
+                <Grid size={4}>
+                  <OneMessage
+                    key={message.id}
+                    id={message.id}
+                    author={message.author}
+                    message={message.message}
+                    image={message.image}
+                  />
+                </Grid>
+              )))
+            }
+          </Grid>
+        </>
+      )}
     </>
   );
 };
